@@ -75,10 +75,7 @@ class DashboardManager {
     setupNavigation() {
         if (this.dom.profileBtn) {
             this.dom.profileBtn.addEventListener('click', () => {
-                console.log('Navegando a Configuración...');
-                // AQUÍ CONECTAREMOS TU PRÓXIMA VISTA
-                // window.location.href = 'settings.html';
-                alert('🚀 Preparando navegación a Configuración (Próximo Sprint)');
+                window.location.href = 'settings.html';
             });
         }
     }

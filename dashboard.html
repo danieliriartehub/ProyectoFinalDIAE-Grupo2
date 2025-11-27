@@ -62,7 +62,7 @@
         <section class="kpi-grid animate-fade delay-1">
             
             <!-- Card 1: Finanzas -->
-            <div class="kpi-card">
+            <div class="kpi-card" onclick="window.location.href='cashflow.html'" style="cursor: pointer;">
                 <div class="card-top">
                     <div class="icon-box bg-orange"><i class="fas fa-dollar-sign"></i></div>
                     <button class="menu-dots"><i class="fas fa-ellipsis-v"></i></button>
@@ -76,7 +76,7 @@
             </div>
 
             <!-- Card 2: Inventario -->
-            <div class="kpi-card">
+            <div class="kpi-card" onclick="window.location.href='inventory.html'" style="cursor: pointer;">
                 <div class="card-top">
                     <div class="icon-box bg-green"><i class="fas fa-box"></i></div>
                     <button class="menu-dots"><i class="fas fa-ellipsis-v"></i></button>
@@ -104,7 +104,7 @@
             </div>
 
             <!-- Card 4: Sistema -->
-            <div class="kpi-card">
+            <div class="kpi-card" onclick="window.location.href='finance.html'" style="cursor: pointer;">
                 <div class="card-top">
                     <div class="icon-box bg-blue"><i class="far fa-bell"></i></div>
                     <button class="menu-dots"><i class="fas fa-ellipsis-v"></i></button>
@@ -122,12 +122,12 @@
         <section class="alerts-section animate-fade delay-2">
             <div class="section-title-row">
                 <h2>Alertas Recientes</h2>
-                <a href="#" class="link-view-all">Ver todas <i class="fas fa-chevron-right"></i></a>
+                <a href="finance.html" class="link-view-all">Ver todas <i class="fas fa-chevron-right"></i></a>
             </div>
 
             <div class="alerts-list">
                 <!-- Alerta Critica -->
-                <div class="alert-item type-critical">
+                <div class="alert-item type-critical" onclick="window.location.href='finance.html'" style="cursor: pointer;">
                     <div class="alert-icon"><i class="fas fa-exclamation-circle"></i></div>
                     <div class="alert-info">
                         <h4>Pago pendiente vencido</h4>
@@ -161,23 +161,23 @@
 
     <!-- BOTTOM NAV (Estilo App Móvil/SaaS) -->
     <nav class="bottom-dock">
-        <a href="#" class="dock-item active">
+        <a href="dashboard.html" class="dock-item active">
             <i class="fas fa-home"></i>
             <span>Inicio</span>
         </a>
-        <a href="#" class="dock-item">
+        <a href="inventory.html" class="dock-item">
             <i class="fas fa-box-open"></i>
             <span>Inventario</span>
         </a>
-        <a href="#" class="dock-item">
+        <a href="finance.html" class="dock-item">
             <i class="fas fa-file-invoice-dollar"></i>
             <span>Pedidos</span>
         </a>
-        <a href="#" class="dock-item">
+        <a href="cashflow.html" class="dock-item">
             <i class="fas fa-chart-pie"></i>
             <span>Reportes</span>
         </a>
-        <a href="#" class="dock-item">
+        <a href="settings.html" class="dock-item">
             <i class="fas fa-cog"></i>
             <span>Ajustes</span>
         </a>

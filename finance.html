@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILETL | Finanzas</title>
+    
+    <!-- Tipografía Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="./styles/finance.css">
+</head>
+<body>
+
+    <!-- HEADER: Navegación Superior -->
+    <header class="top-bar-internal">
+        <div class="container header-wrapper">
+            <a href="dashboard.html" class="back-btn" aria-label="Volver al Dashboard">
+                <i class="fas fa-chevron-left"></i>
+            </a>
+            <h1 class="page-title">Gestión Financiera</h1>
+            <div class="placeholder"></div> <!-- Mantiene el título centrado -->
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="finance-content container">
+        
+        <!-- Filtros de Estado -->
+        <section class="control-panel">
+            <div class="tabs-container">
+                <button class="tab-btn active" data-filter="all">Todos</button>
+                <button class="tab-btn" data-filter="paid">Pagados</button>
+                <button class="tab-btn" data-filter="pending">Pendientes</button>
+                <button class="tab-btn" data-filter="overdue">Vencidos</button>
+            </div>
+        </section>
+
+        <!-- Listado de Facturas (Renderizado por JS) -->
+        <section id="invoice-list" class="invoice-list-container">
+            <!-- Las facturas se insertarán aquí dinámicamente -->
+            <p>Cargando facturas...</p>
+        </section>
+
+    </main>
+
+    <!-- BOTTOM NAV (Estilo App Móvil/SaaS) -->
+    <nav class="bottom-dock">
+        <a href="dashboard.html" class="dock-item">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="inventory.html" class="dock-item">
+            <i class="fas fa-box-open"></i>
+            <span>Inventario</span>
+        </a>
+        <a href="finance.html" class="dock-item active">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Pedidos</span>
+        </a>
+        <a href="cashflow.html" class="dock-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Reportes</span>
+        </a>
+        <a href="settings.html" class="dock-item">
+            <i class="fas fa-cog"></i>
+            <span>Ajustes</span>
+        </a>
+    </nav>
+
+    <script src="js/finance.js"></script>
+</body>
+</html>

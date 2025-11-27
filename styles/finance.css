@@ -181,3 +181,89 @@ body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color
     .control-panel { flex-direction: column; align-items: stretch; }
     .tabs-container { overflow-x: auto; }
 }
+
+/* =========================================================================================
+  NUEVOS ESTILOS PARA TARJETAS DE FACTURA (v1.1)
+  ========================================================================================= */
+
+.invoice-list-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 20px;
+    padding-top: 20px;
+}
+
+.invoice-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft);
+    border-left: 5px solid;
+    transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+}
+
+.invoice-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.07);
+}
+
+/* Asignar color de borde según el estado */
+.invoice-card[data-status="paid"] { border-left-color: var(--paid-text); }
+.invoice-card[data-status="pending"] { border-left-color: var(--pending-text); }
+.invoice-card[data-status="overdue"] { border-left-color: var(--overdue-text); }
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.client-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.client-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-dark);
+}
+
+.client-company {
+    font-size: 0.8rem;
+    color: var(--text-gray);
+}
+
+.invoice-amount {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--text-dark);
+}
+
+.card-body {
+    padding: 16px 20px;
+    font-size: 0.85rem;
+    color: var(--text-gray);
+}
+
+.invoice-info, .due-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+}
+
+.card-footer {
+    padding: 10px 20px;
+    background-color: #F9FAFB;
+    border-top: 1px solid var(--border-color);
+    border-bottom-left-radius: var(--radius-card);
+    border-bottom-right-radius: var(--radius-card);
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--text-gray);
+    grid-column: 1 / -1; /* Ocupa todo el ancho del grid */
+}
