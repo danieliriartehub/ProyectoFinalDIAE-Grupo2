@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILETL | Interpretación de Datos</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="./styles/insights.css">
+</head>
+
+<body>
+
+    <!-- Header Compacto -->
+    <header class="top-bar">
+        <div class="brand">
+            <div class="logo-box">M</div>
+            <div class="brand-text">
+                <span class="name">MILETL</span>
+                <span class="tag">AI-Powered ETL Platform</span>
+            </div>
+        </div>
+        <div class="status-pill">
+            <span class="dot"></span> AI Engine Activo
+        </div>
+    </header>
+
+    <div class="controls-bar">
+        <button class="btn-back" onclick="window.location.href='upload.html'">Cancelar y Volver</button>
+    </div>
+
+    <!-- Overlay Oscuro para Efecto Focus -->
+    <div id="focusOverlay" class="focus-overlay"></div>
+
+    <main class="dashboard-grid">
+        
+        <!-- ZONA IZQUIERDA (Gráfico Principal + Mascota) -->
+        <div class="grid-col-left">
+            
+            <!-- GRÁFICO 1: ANÁLISIS PRINCIPAL -->
+            <div class="chart-card large-card" id="cardMain" onclick="window.toggleInsight('cardMain')">
+                <div class="card-header">
+                    <h4>Análisis Principal de Datos</h4>
+                    <span class="badge orange">Ventas por Categoría</span>
+                    <button class="btn-more"><i class="fas fa-ellipsis-h"></i></button>
+                </div>
+                <div class="chart-body">
+                    <!-- Barras centradas mediante CSS -->
+                    <div class="complex-bar-chart">
+                        <div class="bar-group"><div class="c-bar h-40"></div><div class="c-bar h-60 alt"></div></div>
+                        <div class="bar-group"><div class="c-bar h-30"></div><div class="c-bar h-50 alt"></div></div>
+                        <div class="bar-group"><div class="c-bar h-70"></div><div class="c-bar h-80 alt"></div></div>
+                        <div class="bar-group"><div class="c-bar h-50"></div><div class="c-bar h-40 alt"></div></div>
+                        <div class="bar-group"><div class="c-bar h-60"></div><div class="c-bar h-70 alt"></div></div>
+                        <div class="bar-group"><div class="c-bar h-80"></div><div class="c-bar h-90 alt"></div></div>
+                        <div class="bar-group"><div class="c-bar h-40"></div><div class="c-bar h-30 alt"></div></div>
+                    </div>
+                    <!-- Eje X Simulado -->
+                    <div class="x-axis-line"></div>
+                </div>
+
+                <!-- POPUP: RECOMENDACIONES -->
+                <div class="insight-bubble right-side">
+                    <div class="bubble-header"><i class="fas fa-lightbulb"></i> Recomendaciones</div>
+                    <p>Veo un pico de actividad muy fuerte al inicio de semana (probablemente miércoles y jueves) y una bajada natural durante el fin de semana.</p>
+                    <p><strong>Estrategia:</strong> Lancemos nuestras promociones y anuncios más importantes los martes por la tarde, justo antes de que empiece la subida.</p>
+                    <button class="btn-ok">Entendido</button>
+                </div>
+            </div>
+
+            <!-- ESPACIO PARA LA MASCOTA -->
+            <div class="mascot-area">
+                <img src="https://cdn-icons-png.flaticon.com/512/4193/4193235.png" alt="Asistente Zorro" class="fox-mascot">
+            </div>
+        </div>
+
+        <!-- ZONA DERECHA (Gráficos Secundarios) -->
+        <div class="grid-col-right">
+            
+            <!-- FILA SUPERIOR DERECHA -->
+            <div class="right-top-row">
+                
+                <!-- GRÁFICO 2: VENTAS POR REGIÓN -->
+                <div class="chart-card" id="cardRegion" onclick="window.toggleInsight('cardRegion')">
+                    <div class="card-header">
+                        <h4>Ventas por Región</h4>
+                    </div>
+                    <div class="chart-body centered">
+                        <div class="pie-chart"></div>
+                        <div class="pie-legend">
+                            <span><span class="dot-l p1"></span> Norte</span>
+                            <span><span class="dot-l p2"></span> Sur</span>
+                        </div>
+                    </div>
+
+                    <div class="insight-bubble bottom-side">
+                        <div class="bubble-header"><i class="fas fa-globe"></i> Geografía</div>
+                        <p>El 60% de tus ingresos provienen de la región Norte. Considera expandir la logística en el Sur para equilibrar la carga.</p>
+                        <button class="btn-ok">Entendido</button>
+                    </div>
+                </div>
+
+                <!-- GRÁFICO 3: TOP PRODUCTOS -->
+                <div class="chart-card" id="cardTop" onclick="window.toggleInsight('cardTop')">
+                    <div class="card-header">
+                        <h4>Top Productos</h4>
+                        <button class="btn-more green"><i class="fas fa-ellipsis-h"></i></button>
+                    </div>
+                    <div class="chart-body">
+                        <!-- Barras verticales centradas -->
+                        <div class="vertical-bars">
+                            <div class="v-bar h-60"></div>
+                            <div class="v-bar h-80"></div>
+                            <div class="v-bar h-40"></div>
+                            <div class="v-bar h-90 active-bar"></div> <!-- Barra destacada -->
+                            <div class="v-bar h-50"></div>
+                        </div>
+                        <div class="x-axis-line"></div>
+                    </div>
+
+                    <div class="insight-bubble left-side">
+                        <div class="bubble-header"><i class="fas fa-trophy"></i> Producto Estrella</div>
+                        <p>Tu "Producto B" (Barra Alta) está superando a todos los demás por un margen del 20%. ¡Asegura el stock de este ítem!</p>
+                        <button class="btn-ok">Entendido</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRÁFICO 4: ACTIVIDAD SEMANAL -->
+            <div class="chart-card wide-card" id="cardWeekly" onclick="window.toggleInsight('cardWeekly')">
+                <div class="card-header">
+                    <h4>Actividad Semanal</h4>
+                </div>
+                <div class="chart-body">
+                    <svg viewBox="0 0 100 30" class="area-chart" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="gradBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#3B82F6;stop-opacity:0" />
+                            </linearGradient>
+                            <linearGradient id="gradGreen" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" style="stop-color:#10B981;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#10B981;stop-opacity:0" />
+                            </linearGradient>
+                        </defs>
+                        <path d="M0,30 L0,15 L10,10 L20,18 L30,5 L40,12 L50,8 L60,20 L70,10 L80,15 L90,5 L100,12 L100,30 Z" fill="url(#gradBlue)" stroke="#3B82F6" stroke-width="0.8"/>
+                        <path d="M0,30 L0,20 L15,15 L30,22 L45,10 L60,18 L75,12 L90,20 L100,18 L100,30 Z" fill="url(#gradGreen)" stroke="#10B981" stroke-width="0.8"/>
+                    </svg>
+                </div>
+
+                <div class="insight-bubble top-side">
+                    <div class="bubble-header"><i class="fas fa-clock"></i> Ritmo de Trabajo</div>
+                    <p>Tus equipos son más productivos los Miércoles. Los Viernes por la tarde hay una caída del 40% en registros.</p>
+                    <button class="btn-ok">Entendido</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FLECHA DE NAVEGACIÓN -->
+        <div class="nav-arrow-container">
+            <button id="btnNext" class="arrow-btn disabled"><i class="fas fa-chevron-right"></i></button>
+        </div>
+
+    </main>
+
+    <!-- BARRA DE PROGRESO -->
+    <div class="bottom-progress">
+        <div class="bar-track">
+            <div class="bar-fill" id="progressBar"></div>
+        </div>
+    </div>
+
+    <script src="js/insights.js"></script>
+</body>
+</html>

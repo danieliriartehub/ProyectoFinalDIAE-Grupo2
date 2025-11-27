@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+  =============================================================================================
+  VISTA: ANÁLISIS DE DATOS (DATA HEALTH CHECK)
+  ARQUITECTURA: Interactive Dashboard con Efecto Focus
+  OBJETIVO: Mostrar resultados del proceso ETL y educar al usuario sobre la calidad de sus datos.
+  =============================================================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILETL | Análisis de Datos</title>
+    
+    <!-- Tipografía Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="./styles/analysis.css">
+</head>
+
+<body>
+
+    <!-- NAV HEADER SIMPLIFICADO -->
+    <header class="analysis-header">
+        <div class="container header-content">
+            <div class="brand">
+                <div class="logo-box">M</div>
+                <div class="brand-info">
+                    <span class="logo-text">MILETL</span>
+                    <span class="logo-sub">AI-Powered ETL Platform</span>
+                </div>
+            </div>
+            <div class="status-badge">
+                <span class="dot-indicator"></span> AI Engine Activo
+            </div>
+        </div>
+    </header>
+
+
+
+    <main class="container analysis-main">
+        
+        <!-- BARRA SUPERIOR -->
+        <div class="top-controls">
+            <button class="btn-cancel" onclick="window.location.href='upload.html'">Cancelar y Volver</button>
+        </div>
+
+        <!-- TÍTULO -->
+        <div class="page-title animate-fade-in">
+            <h1>Chequeo de Salud de la Información <i class="fas fa-heart heart-icon"></i></h1>
+            <p>Hemos procesado tus archivos. Haz clic en cada tarjeta para ver los detalles.</p>
+        </div>
+
+        <!-- GRID DE TARJETAS (INTERACTIVAS) -->
+        <div class="cards-container">
+            
+            <!-- CARD 1: VOLUMEN -->
+            <div class="insight-card" id="cardVolume" onclick="window.showDetail('volume')">
+                <div class="card-content">
+                    <h3>Datos Analizados</h3>
+                    <span class="sub-label">Volumen total de datos procesados</span>
+                    <div class="metric-value orange-text">1,495</div>
+                    <div class="status-check"><i class="fas fa-check-circle"></i> Volumen estable</div>
+                </div>
+                <button class="btn-dots"><i class="fas fa-ellipsis-h"></i></button>
+                
+                <!-- TOOLTIP / MENSAJE (Oculto inicialmente) -->
+                <div class="detail-bubble">
+                    <h4>¡Genial!</h4>
+                    <p>Que el volumen sea "estable" nos dice que tu negocio mantiene un ritmo constante y predecible. Es una excelente señal de que tus operaciones diarias son consistentes.</p>
+                    <button class="btn-close-detail" onclick="event.stopPropagation(); window.closeDetail()">Entendido</button>
+                </div>
+            </div>
+
+            <!-- CARD 2: ARREGLOS IA -->
+            <div class="insight-card" id="cardFixes" onclick="window.showDetail('fixes')">
+                <div class="card-content">
+                    <h3>Arreglos Hechos por la IA</h3>
+                    <span class="sub-label">Registros con inconsistencias resueltas</span>
+                    <div class="metric-value orange-text">120</div>
+                    <div class="status-info"><i class="fas fa-robot"></i> El asistente trabajó de más</div>
+                </div>
+                <button class="btn-dots"><i class="fas fa-ellipsis-h"></i></button>
+
+                <!-- TOOLTIP / MENSAJE -->
+                <div class="detail-bubble">
+                    <h4>Trabajo Automático Realizado:</h4>
+                    <ul>
+                        <li><i class="fas fa-check"></i> <strong>65 Fechas:</strong> Se unificaron formatos (DD/MM/AA vs MM/DD/AA).</li>
+                        <li><i class="fas fa-check"></i> <strong>30 Teléfonos:</strong> Se añadieron códigos de área faltantes.</li>
+                        <li><i class="fas fa-check"></i> <strong>25 Nombres:</strong> Se corrigieron mayúsculas y espacios.</li>
+                    </ul>
+                    <button class="btn-close-detail" onclick="event.stopPropagation(); window.closeDetail()">Entendido</button>
+                </div>
+            </div>
+
+            <!-- CARD 3: CALIDAD -->
+            <div class="insight-card" id="cardQuality" onclick="window.showDetail('quality')">
+                <div class="card-content">
+                    <h3>Calidad de la Información</h3>
+                    <span class="sub-label">Porcentaje de registros listos para usar</span>
+                    <div class="metric-value orange-text">99.7%</div>
+                    <div class="status-check"><i class="fas fa-shield-alt"></i> Calidad muy alta</div>
+                </div>
+                <button class="btn-dots"><i class="fas fa-ellipsis-h"></i></button>
+
+                <!-- TOOLTIP / MENSAJE -->
+                <div class="detail-bubble">
+                    <h4>¡Excelentes noticias!</h4>
+                    <p>Piensa en este 99.7% como la nota final del examen de salud de tus datos. <strong>¡Es una calificación casi perfecta!</strong> Significa que puedes confiar plenamente en esta información para tomar decisiones importantes.</p>
+                    <button class="btn-close-detail" onclick="event.stopPropagation(); window.closeDetail()">Entendido</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FLECHA DE NAVEGACIÓN (Derecha) -->
+        <button id="btnNextStep" class="nav-arrow disabled" title="Revisa todas las tarjetas para continuar">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <!-- BARRA DE PROGRESO INFERIOR -->
+        <div class="bottom-progress-container">
+            <div class="progress-track">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="js/analysis.js"></script>
+</body>
+</html>

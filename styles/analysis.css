@@ -1,0 +1,157 @@
+/* =========================================================================================
+  ARCHIVO: analysis.css
+  DISEÑO: Dark Mode Overlay & Focus Cards
+  PALETA: Naranja (#F49D37) y Gris Oscuro (#1F2937) para contraste
+  =========================================================================================
+*/
+
+:root {
+    --primary: #F49D37;
+    --primary-dark: #D97706;
+    --text-dark: #1F2937;
+    --text-gray: #6B7280;
+    --bg-body: #FFFBF2;
+    --bg-card: #FFFFFF;
+    --success: #10B981;
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --shadow-focus: 0 20px 50px rgba(0,0,0,0.2);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background-color: #333; /* Fondo base oscuro como en la imagen */ color: white; height: 100vh; overflow: hidden; }
+
+/* El contenedor principal simula la pantalla dentro del navegador oscuro */
+.analysis-main {
+    background-color: var(--bg-body);
+    width: 100%; height: 100%;
+    position: relative;
+    color: var(--text-dark);
+    display: flex; flex-direction: column;
+    padding: 20px 40px;
+}
+
+/* --- HEADER --- */
+.analysis-header { background: #1F2937; padding: 15px 0; color: white; }
+.header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo-box { background: var(--primary); width: 36px; height: 36px; border-radius: 6px; display: grid; place-items: center; font-weight: 800; color: white; font-size: 1.1rem; }
+.brand-info { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-text { font-weight: 700; font-size: 1.1rem; letter-spacing: 0.5px; }
+.logo-sub { font-size: 0.7rem; color: #9CA3AF; text-transform: uppercase; }
+
+.status-badge { background: #374151; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; display: flex; align-items: center; gap: 8px; border: 1px solid #4B5563; }
+.dot-indicator { width: 8px; height: 8px; background: #10B981; border-radius: 50%; box-shadow: 0 0 5px #10B981; }
+
+/* --- CONTROLES SUPERIORES --- */
+.top-controls { margin-bottom: 20px; margin-top: 10px; }
+.btn-cancel { background: var(--primary); color: white; border: none; padding: 8px 20px; border-radius: 6px; font-weight: 600; cursor: pointer; font-size: 0.9rem; }
+.btn-cancel:hover { background: var(--primary-dark); }
+
+/* --- TÍTULO --- */
+.page-title { margin-bottom: 30px; }
+.page-title h1 { font-size: 1.8rem; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+.heart-icon { color: #EF4444; font-size: 1.5rem; animation: pulse 2s infinite; }
+.page-title p { color: var(--text-gray); margin-top: 5px; }
+
+/* --- GRID DE TARJETAS --- */
+.cards-container { 
+    display: flex; flex-direction: column; gap: 20px; 
+    max-width: 500px; /* Alineación izquierda como en mockup */
+    position: relative; z-index: 10;
+}
+
+.insight-card {
+    background: var(--bg-card); border-radius: 12px; padding: 20px 24px;
+    box-shadow: var(--shadow-card); position: relative; border: 1px solid rgba(0,0,0,0.05);
+    display: flex; justify-content: space-between; align-items: flex-start;
+    cursor: pointer; transition: all 0.3s ease;
+    transform-origin: center left;
+}
+
+.insight-card:hover { transform: translateX(5px); border-color: var(--primary); }
+
+.card-content h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+.sub-label { font-size: 0.8rem; color: var(--text-gray); display: block; margin-bottom: 10px; }
+.metric-value { font-size: 2.5rem; font-weight: 800; line-height: 1; margin-bottom: 8px; }
+.orange-text { color: var(--primary-dark); } /* Tono más oscuro para números */
+
+.status-check { color: var(--success); font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
+.status-info { color: #3B82F6; font-weight: 600; font-size: 0.85rem; display: flex; align-items: center; gap: 6px; }
+
+.btn-dots { background: #4B5563; color: white; border: none; width: 40px; height: 30px; border-radius: 6px; cursor: pointer; display: flex; align-items: center; justify-content: center; align-self: flex-end; margin-bottom: 5px; }
+
+/* --- ESTADOS DE FOCUS (JS) --- */
+.insight-card.active {
+    z-index: 100;
+    transform: scale(1.02);
+    box-shadow: var(--shadow-focus);
+    border: 2px solid var(--primary);
+}
+
+/* --- OVERLAY OSCURO --- */
+.dim-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8); /* Oscuro intenso */
+    z-index: 90; opacity: 0; pointer-events: none;
+    transition: opacity 0.4s ease;
+}
+.dim-overlay.active { opacity: 1; pointer-events: auto; }
+
+/* --- DETAIL BUBBLE (La explicación) --- */
+.detail-bubble {
+    position: absolute;
+    left: 105%; top: 50%; transform: translateY(-50%) translateX(-20px);
+    width: 350px; background: white; padding: 20px; border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    opacity: 0; visibility: hidden; transition: all 0.4s ease;
+    border-left: 5px solid var(--primary);
+}
+.insight-card.active .detail-bubble {
+    opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0);
+}
+
+/* Flechita del bubble */
+.detail-bubble::before {
+    content: ''; position: absolute; left: -10px; top: 50%; transform: translateY(-50%);
+    border-width: 10px 10px 10px 0; border-style: solid;
+    border-color: transparent white transparent transparent;
+}
+
+.detail-bubble h4 { color: var(--text-dark); margin-bottom: 10px; font-size: 1.1rem; }
+.detail-bubble p { font-size: 0.9rem; color: #4B5563; line-height: 1.5; margin-bottom: 15px; }
+.detail-bubble ul { list-style: none; margin-bottom: 15px; }
+.detail-bubble li { font-size: 0.85rem; margin-bottom: 6px; display: flex; align-items: start; gap: 8px; }
+.detail-bubble li i { color: var(--success); margin-top: 3px; }
+
+.btn-close-detail {
+    background: var(--text-dark); color: white; border: none; padding: 8px 16px; 
+    border-radius: 4px; font-size: 0.8rem; cursor: pointer; float: right;
+}
+
+/* --- BOTÓN NEXT (FLECHA GIGANTE) --- */
+.nav-arrow {
+    position: absolute; right: 5%; top: 50%; transform: translateY(-50%);
+    background: transparent; border: none; color: #D68220; /* Tono marrón/naranja */
+    font-size: 5rem; cursor: pointer; transition: all 0.3s;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.2));
+    z-index: 20;
+}
+.nav-arrow:hover { transform: translateY(-50%) scale(1.1); color: var(--primary); }
+.nav-arrow.disabled { opacity: 0.3; cursor: not-allowed; pointer-events: none; filter: grayscale(1); }
+
+/* --- BARRA DE PROGRESO --- */
+.bottom-progress-container {
+    position: absolute; bottom: 30px; left: 40px; right: 40px;
+    height: 30px; background: #E5E7EB; border-radius: 4px; overflow: hidden;
+}
+.progress-track { width: 100%; height: 100%; background: #D1D5DB; }
+.progress-fill {
+    height: 100%; width: 25%; /* Paso 2 de ? */
+    background: linear-gradient(90deg, #F2994A, #F2C94C); /* Gradiente Naranja/Amarillo */
+    border-radius: 4px;
+}
+
+/* Animations */
+@keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
