@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+  =============================================================================================
+  VISTA: GESTIÓN DE INVENTARIO (WMS LITE)
+  ARQUITECTURA: CRUD Dashboard
+  OBJETIVO: Control de stock, alertas de reabastecimiento y gestión de SKUs.
+  =============================================================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILETL | Gestión de Inventario</title>
+    
+    <!-- Tipografía Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="./styles/inventory.css">
+</head>
+
+<body>
+
+    <!-- TOP NAVIGATION -->
+    <nav class="module-nav">
+        <div class="container nav-wrapper">
+            <div class="nav-left">
+                <a href="dashboard.html" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+                <span class="brand-logo">MILETL</span>
+            </div>
+            <div class="actions">
+                <div class="avatar-circle">CA</div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container module-main">
+        
+        <!-- HEADER -->
+        <header class="page-header">
+            <h1>Gestión de Inventario</h1>
+            <p>Controla y administra el stock de productos en tiempo real.</p>
+        </header>
+
+        <!-- KPI CARDS (Resumen de Stock) -->
+        <section class="inventory-kpis">
+            <!-- Total -->
+            <div class="inv-card">
+                <div class="icon-box blue-bg"><i class="fas fa-cube"></i></div>
+                <p class="inv-label">TOTAL DE PRODUCTOS</p>
+                <h3 class="inv-value blue-text">20</h3>
+                <span class="inv-sub">SKUs únicos en el sistema</span>
+            </div>
+
+            <!-- Stock Bajo -->
+            <div class="inv-card">
+                <div class="icon-box yellow-bg"><i class="fas fa-exclamation-triangle"></i></div>
+                <p class="inv-label">STOCK BAJO</p>
+                <h3 class="inv-value yellow-text">4</h3>
+                <span class="inv-sub">Por debajo del nivel mínimo</span>
+            </div>
+
+            <!-- Crítico -->
+            <div class="inv-card">
+                <div class="icon-box red-bg"><i class="fas fa-times-circle"></i></div>
+                <p class="inv-label">CRÍTICO</p>
+                <h3 class="inv-value red-text">3</h3>
+                <span class="inv-sub">A punto de agotarse</span>
+            </div>
+        </section>
+
+        <!-- BARRA DE ACCIONES (Filtros y Búsqueda) -->
+        <section class="control-bar">
+            <div class="search-container">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Buscar por nombre o código de producto...">
+            </div>
+            
+            <div class="filter-pills" id="filterContainer">
+                <button class="pill active" data-filter="all">Todos</button>
+                <button class="pill" data-filter="sufficient">Suficiente</button>
+                <button class="pill" data-filter="low">Bajo</button>
+                <button class="pill" data-filter="critical">Crítico</button>
+            </div>
+
+            <button class="btn-primary add-btn">
+                <i class="fas fa-plus"></i> Añadir Nuevo Producto
+            </button>
+        </section>
+
+        <!-- TABLA DE INVENTARIO -->
+        <section class="inventory-table-container">
+            <table class="inv-table">
+                <thead>
+                    <tr>
+                        <th>PRODUCTO</th>
+                        <th>CATEGORÍA</th>
+                        <th>STOCK ACTUAL</th>
+                        <th>UNIDAD</th>
+                        <th>ESTADO</th>
+                        <th>ACCIONES</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryTableBody">
+                    <!-- Renderizado por JS -->
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+    <!-- BOTTOM DOCK -->
+    <nav class="bottom-dock">
+        <a href="dashboard.html" class="dock-item">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="inventory.html" class="dock-item active">
+            <i class="fas fa-box-open"></i>
+            <span>Inventario</span>
+        </a>
+        <a href="#" class="dock-item">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Pedidos</span>
+        </a>
+        <a href="cashflow.html" class="dock-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Reportes</span>
+        </a>
+        <a href="settings.html" class="dock-item">
+            <i class="fas fa-cog"></i>
+            <span>Ajustes</span>
+        </a>
+    </nav>
+
+    <script src="js/inventory.js"></script>
+</body>
+</html>

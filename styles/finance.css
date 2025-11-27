@@ -1,0 +1,183 @@
+/* =========================================================================================
+  ARCHIVO: finance.css
+  DISEÑO: Finance Dashboard UI
+  ENFOQUE: Claridad en estados (Vencido/Pendiente/Pagado) y Alertas visuales.
+  =========================================================================================
+*/
+
+:root {
+    --primary: #F49D37;
+    --text-dark: #1F2937;
+    --text-gray: #6B7280;
+    --bg-body: #FFFBF2;
+    --bg-card: #FFFFFF;
+    --border-color: #E5E7EB;
+    
+    /* Estados Financieros */
+    --paid-bg: #ECFDF5;
+    --paid-text: #059669;
+    --pending-bg: #FFFBEB;
+    --pending-text: #D97706;
+    --overdue-bg: #FEF2F2;
+    --overdue-text: #DC2626;
+    
+    --radius-card: 16px;
+    --shadow-soft: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-dark); padding-bottom: 80px; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+/* NAV */
+.module-nav { background: var(--bg-card); height: 64px; display: flex; align-items: center; border-bottom: 1px solid var(--border-color); }
+.nav-wrapper { width: 100%; display: flex; justify-content: space-between; align-items: center; }
+.nav-left { display: flex; align-items: center; gap: 16px; }
+.back-btn { background: #F3F4F6; width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; color: var(--text-gray); transition: all 0.2s; }
+.back-btn:hover { background: #E5E7EB; color: var(--text-dark); }
+.brand-logo { font-weight: 800; color: var(--primary); font-size: 1.1rem; }
+.avatar-circle { width: 36px; height: 36px; background: var(--primary); color: white; border-radius: 50%; display: grid; place-items: center; font-weight: 700; font-size: 0.8rem; }
+
+/* HEADER */
+.module-main { padding-top: 30px; }
+.page-header { margin-bottom: 24px; }
+.page-header h1 { font-size: 1.75rem; font-weight: 700; color: var(--text-dark); margin-bottom: 4px; }
+.page-header p { color: var(--text-gray); font-size: 0.95rem; }
+
+/* ALERT BANNER */
+.alert-banner {
+    background: #FEF2F2; border: 1px solid #FCA5A5; border-radius: 12px;
+    padding: 16px 20px; display: flex; gap: 16px; align-items: flex-start;
+    margin-bottom: 30px;
+}
+.alert-icon-wrapper {
+    background: #FEE2E2; width: 32px; height: 32px; border-radius: 50%;
+    display: grid; place-items: center; color: #DC2626; flex-shrink: 0;
+}
+.alert-content h3 { color: #991B1B; font-size: 0.95rem; font-weight: 700; margin-bottom: 2px; }
+.alert-content p { color: #7F1D1D; font-size: 0.85rem; }
+.animate-fade { animation: fadeIn 0.5s ease-out; }
+
+/* KPI CARDS */
+.finance-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-bottom: 30px; }
+
+.fin-card {
+    background: var(--bg-card); padding: 24px; border-radius: var(--radius-card);
+    box-shadow: var(--shadow-soft); border-top: 4px solid transparent;
+}
+.border-red { border-top-color: var(--overdue-text); }
+.border-yellow { border-top-color: var(--pending-text); }
+.border-green { border-top-color: var(--paid-text); }
+
+.icon-box { width: 40px; height: 40px; border-radius: 10px; display: grid; place-items: center; font-size: 1.2rem; margin-bottom: 16px; }
+.red-bg { background: #FEE2E2; color: #EF4444; }
+.yellow-bg { background: #FEF3C7; color: #F59E0B; }
+.green-bg { background: #D1FAE5; color: #10B981; }
+
+.fin-label { font-size: 0.7rem; font-weight: 700; color: var(--text-gray); text-transform: uppercase; margin-bottom: 8px; letter-spacing: 0.5px; }
+.fin-value { font-size: 2rem; font-weight: 800; margin-bottom: 4px; }
+.red-text { color: var(--overdue-text); }
+.yellow-text { color: #B45309; }
+.green-text { color: var(--paid-text); }
+
+.fin-sub { font-size: 0.85rem; color: var(--text-gray); display: block; margin-bottom: 16px; }
+.card-footer {
+    background: #F9FAFB; padding: 8px 12px; border-radius: 6px; font-size: 0.8rem; font-weight: 600;
+    color: var(--text-gray); display: inline-flex; align-items: center; gap: 6px;
+}
+.card-footer.positive { color: var(--paid-text); background: #ECFDF5; }
+
+/* CONTROL PANEL */
+.control-panel { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+
+.search-box { position: relative; flex: 1; min-width: 300px; }
+.search-box i { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--text-gray); }
+.search-box input {
+    width: 100%; padding: 12px 16px 12px 42px; border: 1px solid var(--border-color);
+    border-radius: 8px; font-size: 0.95rem; outline: none; transition: border-color 0.2s;
+}
+.search-box input:focus { border-color: var(--primary); }
+
+.tabs-container { background: #FFFFFF; padding: 4px; border-radius: 8px; border: 1px solid var(--border-color); display: flex; }
+.tab-btn {
+    border: none; background: transparent; padding: 8px 20px; border-radius: 6px;
+    font-size: 0.85rem; font-weight: 600; color: var(--text-gray); cursor: pointer; transition: all 0.2s;
+}
+.tab-btn.active { background: #FFF7ED; color: var(--primary); box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+
+/* TABLE */
+.table-container { background: var(--bg-card); border-radius: 12px; box-shadow: var(--shadow-soft); overflow-x: auto; margin-bottom: 40px; }
+.finance-table { width: 100%; border-collapse: collapse; min-width: 900px; }
+
+.finance-table th {
+    text-align: left; background: #F9FAFB; color: var(--text-gray);
+    font-size: 0.7rem; font-weight: 700; text-transform: uppercase; padding: 16px 24px;
+    border-bottom: 1px solid var(--border-color); letter-spacing: 0.05em;
+}
+
+.finance-table td { padding: 20px 24px; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
+.finance-table tr:hover { background: #FAFAFA; }
+
+/* Table Content Styles */
+.client-info { display: flex; align-items: center; gap: 12px; }
+.client-initials {
+    width: 36px; height: 36px; border-radius: 8px; font-weight: 700; font-size: 0.9rem;
+    display: grid; place-items: center;
+}
+.client-text h4 { font-size: 0.9rem; font-weight: 600; color: var(--text-dark); }
+.client-text span { font-size: 0.75rem; color: var(--text-gray); }
+
+.invoice-id { font-weight: 700; color: var(--primary); }
+.date-text { color: var(--text-gray); font-size: 0.9rem; }
+.overdue-date { color: var(--overdue-text); font-weight: 600; }
+.amount-text { font-weight: 800; color: var(--text-dark); font-size: 1rem; }
+
+/* Badges */
+.status-pill { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+.status-pill::before { content: ''; width: 6px; height: 6px; border-radius: 50%; }
+
+.st-paid { background: var(--paid-bg); color: var(--paid-text); }
+.st-paid::before { background: var(--paid-text); }
+
+.st-pending { background: var(--pending-bg); color: var(--pending-text); }
+.st-pending::before { background: var(--pending-text); }
+
+.st-overdue { background: var(--overdue-bg); color: var(--overdue-text); }
+.st-overdue::before { background: var(--overdue-text); }
+
+/* Actions */
+.action-group { display: flex; gap: 8px; }
+.btn-action {
+    border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.75rem; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; gap: 6px; transition: opacity 0.2s;
+}
+.btn-primary-soft { background: var(--primary); color: white; }
+.btn-secondary-soft { background: #F3F4F6; color: var(--text-dark); border: 1px solid #E5E7EB; }
+.btn-secondary-soft:hover { background: #E5E7EB; }
+.btn-detail { background: #DBEAFE; color: #1E40AF; }
+
+/* BOTTOM DOCK */
+.bottom-dock {
+    position: fixed; bottom: 0; left: 0; width: 100%;
+    background: var(--bg-card); height: 70px;
+    display: flex; justify-content: space-around; align-items: center;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.03); z-index: 100;
+}
+.dock-item {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    color: #9CA3AF; text-decoration: none; font-size: 0.75rem; font-weight: 500;
+    transition: color 0.2s;
+}
+.dock-item i { font-size: 1.25rem; }
+.dock-item.active, .dock-item:hover { color: var(--primary); }
+
+/* Helpers */
+.bg-orange-soft { background: #FFEDD5; color: #C2410C; }
+.bg-yellow-soft { background: #FEF3C7; color: #B45309; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Responsive */
+@media (max-width: 900px) {
+    .control-panel { flex-direction: column; align-items: stretch; }
+    .tabs-container { overflow-x: auto; }
+}

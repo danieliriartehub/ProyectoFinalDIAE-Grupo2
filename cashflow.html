@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+  =============================================================================================
+  VISTA: REPORTE DE FLUJO DE CAJA (FINANCIAL ANALYTICS)
+  ARQUITECTURA: Data-Driven Dashboard
+  OBJETIVO: Visualización detallada de ingresos, egresos y proyecciones.
+  =============================================================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILETL | Flujo de Caja</title>
+    
+    <!-- Tipografía Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="./styles/cashflow.css">
+</head>
+
+<body>
+
+    <!-- TOP NAVIGATION (Simplificada para vistas internas) -->
+    <nav class="report-nav">
+        <div class="container nav-wrapper">
+            <div class="nav-left">
+                <a href="dashboard.html" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+                <span class="brand-logo">MILETL</span>
+            </div>
+            <div class="actions">
+                <button class="btn-outline"><i class="far fa-file-pdf"></i> Exportar</button>
+                <div class="avatar-circle">CA</div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container report-main">
+        
+        <!-- HEADER DEL REPORTE -->
+        <header class="report-header">
+            <div class="header-title">
+                <div class="icon-title">
+                    <div class="icon-box-lg orange-bg"><i class="fas fa-dollar-sign"></i></div>
+                    <div>
+                        <h1>Reporte de Flujo de Caja</h1>
+                        <p>Análisis detallado de entradas y salidas de efectivo para el periodo seleccionado.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="date-badge">
+                <i class="far fa-calendar"></i> Octubre 2025
+            </div>
+        </header>
+
+        <!-- BARRA DE FILTROS -->
+        <section class="filters-bar">
+            <div class="filter-group">
+                <label>TIPO DE REPORTE</label>
+                <select class="form-select">
+                    <option>Flujo de Caja</option>
+                    <option>Estado de Resultados</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>FECHA INICIO</label>
+                <div class="input-with-icon">
+                    <input type="text" value="01/10/2025">
+                    <i class="far fa-calendar"></i>
+                </div>
+            </div>
+            <div class="filter-group">
+                <label>FECHA FIN</label>
+                <div class="input-with-icon">
+                    <input type="text" value="17/10/2025">
+                    <i class="far fa-calendar"></i>
+                </div>
+            </div>
+            <button class="btn-primary apply-btn">Aplicar Filtros</button>
+        </section>
+
+        <!-- KPI CARDS (Resumen Financiero) -->
+        <section class="financial-kpis">
+            <!-- Ingresos -->
+            <div class="fin-card">
+                <div class="card-badge green-light">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+                <div class="trend-badge positive">+15.2%</div>
+                <p class="fin-label">Ingresos Totales (Cobranzas)</p>
+                <h3 class="fin-amount">S/ 115,400</h3>
+                <span class="fin-sub">Total de dinero ingresado</span>
+            </div>
+
+            <!-- Egresos -->
+            <div class="fin-card">
+                <div class="card-badge red-light">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <div class="trend-badge negative">-8.3%</div>
+                <p class="fin-label">Egresos Totales (Pagos)</p>
+                <h3 class="fin-amount">S/ 98,342</h3>
+                <span class="fin-sub">Total de dinero desembolsado</span>
+            </div>
+
+            <!-- Neto -->
+            <div class="fin-card">
+                <div class="card-badge blue-light">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="trend-badge positive">+24.5%</div>
+                <p class="fin-label">Flujo de Caja Neto</p>
+                <h3 class="fin-amount">S/ 17,058</h3>
+                <span class="fin-sub">Ingresos - Egresos</span>
+            </div>
+
+            <!-- Saldo Final -->
+            <div class="fin-card">
+                <div class="card-badge orange-light">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <div class="trend-badge positive">+12.5%</div>
+                <p class="fin-label">Saldo Final de Caja</p>
+                <h3 class="fin-amount">S/ 142,058</h3>
+                <span class="fin-sub">Saldo acumulado al 17/10/2025</span>
+            </div>
+        </section>
+
+        <!-- GRÁFICO (Chart Component Mock) -->
+        <section class="chart-section">
+            <div class="chart-header">
+                <h3>Flujo de Caja Diario - Octubre 2025</h3>
+                <div class="chart-legend">
+                    <span class="legend-item"><span class="dot green"></span> Ingresos</span>
+                    <span class="legend-item"><span class="dot red"></span> Egresos</span>
+                </div>
+            </div>
+            
+            <!-- Contenedor del gráfico (Renderizado por JS o CSS puro para performance) -->
+            <div class="chart-container" id="cashflowChart">
+                <!-- Barras generadas dinámicamente o simuladas por CSS -->
+                <div class="y-axis">
+                    <span>S/ 25k</span><span>S/ 20k</span><span>S/ 15k</span><span>S/ 10k</span><span>S/ 5k</span><span>S/ 0k</span>
+                </div>
+                <div class="bars-area">
+                    <!-- Barras simuladas (Ejemplo estático para estructura) -->
+                    <div class="bar-group"><div class="bar green" style="height: 60%;"></div><span class="x-label">1</span></div>
+                    <div class="bar-group"><div class="bar red" style="height: 80%;"></div><span class="x-label">2</span></div>
+                    <div class="bar-group"><div class="bar green" style="height: 90%;"></div><span class="x-label">3</span></div>
+                    <div class="bar-group"><div class="bar red" style="height: 40%;"></div><span class="x-label">4</span></div>
+                    <div class="bar-group"><div class="bar green" style="height: 50%;"></div><span class="x-label">5</span></div>
+                    <div class="bar-group"><div class="bar red" style="height: 20%;"></div><span class="x-label">6</span></div>
+                    <div class="bar-group"><div class="bar green" style="height: 55%;"></div><span class="x-label">7</span></div>
+                    <div class="bar-group"><div class="bar red" style="height: 70%;"></div><span class="x-label">8</span></div>
+                    <div class="bar-group"><div class="bar red" style="height: 30%;"></div><span class="x-label">9</span></div>
+                    <div class="bar-group"><div class="bar green" style="height: 75%;"></div><span class="x-label">10</span></div>
+                    <div class="bar-group"><div class="bar red" style="height: 15%;"></div><span class="x-label">11</span></div>
+                    <div class="bar-group"><div class="bar green" style="height: 35%;"></div><span class="x-label">12</span></div>
+                    <div class="bar-group"><div class="bar red" style="height: 60%;"></div><span class="x-label">13</span></div>
+                    <div class="bar-group"><div class="bar green" style="height: 30%;"></div><span class="x-label">14</span></div>
+                    <div class="bar-group"><div class="bar red" style="height: 25%;"></div><span class="x-label">15</span></div>
+                    <div class="bar-group"><div class="bar red" style="height: 10%;"></div><span class="x-label">16</span></div>
+                    <div class="bar-group"><div class="bar green" style="height: 28%;"></div><div class="bar red" style="height: 45%;"></div><span class="x-label">17</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INSIGHTS (Recomendaciones IA) -->
+        <section class="insights-section">
+            <div class="section-title">
+                <i class="far fa-lightbulb"></i> Insights y Recomendaciones
+            </div>
+            <div class="insight-card positive-border">
+                <strong>Crecimiento positivo:</strong> El saldo de caja ha aumentado un 12.5% este mes, impulsado por el cobro de 3 facturas clave de clientes mayoristas.
+            </div>
+            <div class="insight-card warning-border">
+                <strong>Alerta de liquidez:</strong> Se detecta una alta concentración de pagos a proveedores programada para la última semana del mes. Asegure liquidez suficiente de S/ 32,000.
+            </div>
+            <div class="insight-card info-border">
+                <strong>Pago pendiente:</strong> El pago pendiente a "Distribuidora Global SAC" por S/ 15,420 aún no se refleja en los egresos.
+            </div>
+            <div class="insight-card neutral-border">
+                <strong>Oportunidad de inversión:</strong> El flujo neto positivo de S/ 17,058 permite evaluar oportunidades de reinversión en inventario.
+            </div>
+        </section>
+
+        <!-- TABLA DE MOVIMIENTOS -->
+        <section class="movements-section">
+            <div class="table-header-row">
+                <h3>Movimientos Detallados</h3>
+                <div class="toggle-switch-container">
+                    <button class="toggle-btn active" id="btnIngresos">Ingresos (Entradas)</button>
+                    <button class="toggle-btn" id="btnEgresos">Egresos (Salidas)</button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>FECHA</th>
+                            <th>CLIENTE / PROVEEDOR</th>
+                            <th>N° DE FACTURA</th>
+                            <th>CONCEPTO</th>
+                            <th class="text-right">MONTO</th>
+                        </tr>
+                    </thead>
+                    <tbody id="movementsTableBody">
+                        <!-- Renderizado por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BOTTOM DOCK (Consistente) -->
+    <nav class="bottom-dock">
+        <a href="dashboard.html" class="dock-item">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="#" class="dock-item">
+            <i class="fas fa-box-open"></i>
+            <span>Inventario</span>
+        </a>
+        <a href="#" class="dock-item">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Pedidos</span>
+        </a>
+        <a href="#" class="dock-item active">
+            <i class="fas fa-chart-pie"></i>
+            <span>Reportes</span>
+        </a>
+        <a href="settings.html" class="dock-item">
+            <i class="fas fa-cog"></i>
+            <span>Ajustes</span>
+        </a>
+    </nav>
+
+    <script src="js/cashflow.js"></script>
+</body>
+</html>
