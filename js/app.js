@@ -1,7 +1,8 @@
 /**
  * =============================================================================================
- * APP CONTROLLER v3.0 (Restaurado)
- * Lógica: Manejo de Sidebar Móvil y Scroll Suave.
+ * APP CONTROLLER v3.1 (Hotfix)
+ * Lógica: Manejo de Menú Móvil y Scroll Suave.
+ * Adaptado a la estructura HTML original de index.html para no romper el layout.
  * =============================================================================================
  */
 
@@ -9,10 +10,9 @@ class AppController {
     
     constructor() {
         this.dom = {
-            menuTrigger: document.getElementById('mobileMenuTrigger'),
-            closeBtn: document.getElementById('closeSidebarBtn'),
-            navContainer: document.getElementById('navContainer'),
-            overlay: document.getElementById('sidebarOverlay'),
+            // Selectors updated to match index.html
+            menuTrigger: document.getElementById('mobileMenuBtn'), 
+            navLinks: document.getElementById('navLinks'),
             scrollLinks: document.querySelectorAll('a[href^="#"]')
         };
 
@@ -20,53 +20,42 @@ class AppController {
     }
 
     init() {
-        this.setupSidebar();
+        this.setupMobileMenu(); // Renamed for clarity
         this.setupSmoothScroll();
     }
 
-    setupSidebar() {
-        if (this.dom.menuTrigger) {
-            this.dom.menuTrigger.addEventListener('click', () => this.toggleSidebar(true));
-        }
-        if (this.dom.closeBtn) {
-            this.dom.closeBtn.addEventListener('click', () => this.toggleSidebar(false));
-        }
-        if (this.dom.overlay) {
-            this.dom.overlay.addEventListener('click', () => this.toggleSidebar(false));
-        }
-    }
-
-    toggleSidebar(isOpen) {
-        if (isOpen) {
-            this.dom.navContainer.classList.add('active');
-            this.dom.overlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Bloquear scroll
-        } else {
-            this.dom.navContainer.classList.remove('active');
-            this.dom.overlay.classList.remove('active');
-            document.body.style.overflow = '';
+    // Simplified mobile menu toggle
+    setupMobileMenu() {
+        if (this.dom.menuTrigger && this.dom.navLinks) {
+            this.dom.menuTrigger.addEventListener('click', () => {
+                this.dom.navLinks.classList.toggle('nav-active');
+            });
         }
     }
 
     setupSmoothScroll() {
         this.dom.scrollLinks.forEach(link => {
             link.addEventListener('click', (e) => {
-                // Solo si es un link interno
-                if (link.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
+                const href = link.getAttribute('href');
+                // Only process internal hash links
+                if (href.startsWith('#')) {
+                    const targetElement = document.querySelector(href);
                     
                     if (targetElement) {
-                        // Cerrar sidebar si está abierto (móvil)
-                        this.toggleSidebar(false);
+                        e.preventDefault();
                         
-                        // Scroll
+                        // If mobile menu is open, close it
+                        if (this.dom.navLinks && this.dom.navLinks.classList.contains('nav-active')) {
+                            this.dom.navLinks.classList.remove('nav-active');
+                        }
+                        
+                        // Scroll smoothly
                         targetElement.scrollIntoView({
                             behavior: 'smooth',
                             block: 'start'
                         });
                     }
+                    // If targetElement doesn't exist, the link will do nothing, which is correct.
                 }
             });
         });
@@ -76,5 +65,5 @@ class AppController {
 // Inicialización
 document.addEventListener('DOMContentLoaded', () => {
     new AppController();
-    console.log('🚀 Landing Page Loaded & Restored');
+    console.log('🚀 Landing Page Loaded & Hotfix Applied');
 });
