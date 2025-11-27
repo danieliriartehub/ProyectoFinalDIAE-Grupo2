@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+  =============================================================================================
+  MÓDULO DE AUTENTICACIÓN: MILETL ID
+  ARQUITECTURA: Standalone Auth Page
+  
+  CARACTERÍSTICAS:
+  - Formulario reactivo (Login/Registro).
+  - Feedback visual de errores/éxito.
+  - Diseño centrado en conversión (CTA claros).
+  =============================================================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILETL | Portal de Acceso Seguro</title>
+    
+    <!-- Tipografía & Iconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Específico de Auth -->
+    <link rel="stylesheet" href="./styles/auth.css">
+</head>
+
+<body>
+
+    <div class="auth-wrapper">
+        <!-- Tarjeta Principal -->
+        <div class="auth-card animate-entry">
+            
+            <!-- Header de Marca -->
+            <div class="auth-header">
+                <div class="logo-text">MILETL</div>
+                <p class="tagline">Man I Love ETL</p>
+            </div>
+
+            <!-- Contenedor Dinámico (Switch entre Login y Registro) -->
+            <div id="authContainer">
+                
+                <!-- VISTA 1: INICIO DE SESIÓN -->
+                <form id="loginForm" class="auth-form active">
+                    <div class="form-title">
+                        <h3>Ingreso</h3>
+                        <span class="role-badge">Encargado de Logística y Finanzas</span>
+                    </div>
+
+                    <!-- Input: Correo -->
+                    <div class="input-group">
+                        <label for="email" class="input-label">Correo electrónico</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-at input-icon"></i>
+                            <input type="email" id="email" placeholder="carlos25@empresa.com" required autocomplete="email">
+                        </div>
+                    </div>
+
+                    <!-- Input: Contraseña -->
+                    <div class="input-group">
+                        <label for="password" class="input-label">Contraseña</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" id="password" placeholder="••••••••" required autocomplete="current-password">
+                            <i class="far fa-eye toggle-password" id="togglePasswordBtn"></i>
+                        </div>
+                    </div>
+
+                    <!-- Utilidades (Recordar / Olvidé contraseña) -->
+                    <div class="form-utilities">
+                        <label class="checkbox-container">
+                            <input type="checkbox" id="rememberMe">
+                            <span class="checkmark"></span>
+                            Recordar sesión
+                        </label>
+                        <a href="#" class="link-text">¿Olvidaste tu contraseña?</a>
+                    </div>
+
+                    <!-- Feedback de Error (Oculto por defecto) -->
+                    <div id="loginError" class="error-message hidden">
+                        <i class="fas fa-exclamation-circle"></i> <span>Credenciales incorrectas.</span>
+                    </div>
+
+                    <!-- Acciones -->
+                    <div class="action-buttons">
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <span class="btn-text">Ingresar</span>
+                            <div class="loader hidden"></div>
+                        </button>
+                        <button type="button" class="btn btn-outline btn-full">
+                            <i class="far fa-play-circle"></i> Ver Demo
+                        </button>
+                    </div>
+
+                    <div class="form-footer">
+                        ¿No tienes cuenta? <a href="#" id="showRegisterBtn" class="link-highlight">Solicitar acceso</a>
+                    </div>
+                </form>
+
+                <!-- VISTA 2: REGISTRO (Oculta inicialmente) -->
+                <form id="registerForm" class="auth-form hidden">
+                    <div class="form-title">
+                        <h3>Solicitud de Acceso</h3>
+                        <span class="role-badge green">Nuevo Usuario</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Nombre Completo</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-user input-icon"></i>
+                            <input type="text" placeholder="Ej: María González" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Correo Corporativo</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope input-icon"></i>
+                            <input type="email" placeholder="nombre@empresa.com" required>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label class="input-label">Crear Contraseña</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock input-icon"></i>
+                            <input type="password" placeholder="Mínimo 8 caracteres" required>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button type="submit" class="btn btn-primary btn-full">Crear Cuenta</button>
+                    </div>
+
+                    <div class="form-footer">
+                        ¿Ya tienes cuenta? <a href="#" id="showLoginBtn" class="link-highlight">Iniciar Sesión</a>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        
+        <!-- Background Decorativo (Blur) -->
+        <div class="bg-decoration"></div>
+    </div>
+
+    <script src="js/auth.js"></script>
+</body>
+</html>
