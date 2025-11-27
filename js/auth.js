@@ -106,9 +106,9 @@ class AuthController {
         btnText.textContent = '¡Bienvenido!';
         this.dom.submitBtn.style.backgroundColor = '#27AE60'; // Verde éxito
 
-        // Redirección al Dashboard (Landing Page)
+        // Redirección al Dashboard
         setTimeout(() => {
-            window.location.href = 'index.html'; 
+            window.location.href = 'dashboard.html'; 
         }, 800);
     }
 
