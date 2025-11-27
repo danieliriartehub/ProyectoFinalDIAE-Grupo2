@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+  =============================================================================================
+  VISTA: CONFIGURACIÓN DE CUENTA (SETTINGS)
+  ARQUITECTURA: Grid Layout (Master-Detail)
+  OBJETIVO: Gestión de perfil, seguridad y preferencias del usuario.
+  =============================================================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILETL | Configuración</title>
+    
+    <!-- Tipografía Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="./styles/settings.css">
+</head>
+
+<body>
+
+    <!-- TOP NAVIGATION -->
+    <nav class="settings-nav">
+        <div class="container nav-content">
+            <a href="dashboard.html" class="back-link">
+                <i class="fas fa-chevron-left"></i> Volver
+            </a>
+            <div class="brand">MILETL</div>
+            <div class="nav-badge">Configuración de Cuenta</div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="container settings-main">
+        
+        <header class="page-header">
+            <h1>Configuración</h1>
+            <p>Administra tu perfil, seguridad y preferencias de la plataforma.</p>
+        </header>
+
+        <div class="settings-grid">
+            
+            <!-- COLUMNA IZQUIERDA: TARJETA DE PERFIL -->
+            <aside class="profile-sidebar">
+                <div class="profile-card">
+                    <div class="avatar-container">
+                        <div id="sidebarAvatar" class="avatar-large">US</div>
+                        <button class="edit-avatar-btn"><i class="fas fa-pen"></i></button>
+                    </div>
+                    
+                    <h2 id="sidebarName">Cargando...</h2>
+                    <p id="sidebarEmail" class="email-text">usuario@miletl.com</p>
+                    
+                    <div class="role-badge">Encargado de Logística y Finanzas</div>
+
+                    <!-- Stats Rápidos -->
+                    <div class="profile-stats">
+                        <div class="stat-item">
+                            <span class="stat-value">3</span>
+                            <span class="stat-label">AÑOS</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">148</span>
+                            <span class="stat-label">REPORTES</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-value">98%</span>
+                            <span class="stat-label">EFICIENCIA</span>
+                        </div>
+                    </div>
+
+                    <button id="logoutBtn" class="btn-logout">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                    </button>
+                </div>
+            </aside>
+
+            <!-- COLUMNA DERECHA: FORMULARIOS -->
+            <div class="settings-content">
+                
+                <!-- 1. DATOS PERSONALES -->
+                <section class="settings-card">
+                    <div class="card-header">
+                        <div class="icon-box orange"><i class="far fa-user"></i></div>
+                        <h3>Datos Personales</h3>
+                    </div>
+
+                    <form id="personalForm" class="form-grid">
+                        <div class="input-group">
+                            <label>Nombre</label>
+                            <input type="text" id="inputName" value="Carlos">
+                        </div>
+                        <div class="input-group">
+                            <label>Apellido</label>
+                            <input type="text" id="inputSurname" value="Andrés">
+                        </div>
+                        <div class="input-group full-width">
+                            <label>Correo Electrónico</label>
+                            <input type="email" id="inputEmail" value="carlos.andres@miletl.com" disabled>
+                        </div>
+                        <div class="input-group full-width">
+                            <label>Teléfono</label>
+                            <input type="tel" id="inputPhone" value="+51 987 654 321">
+                        </div>
+                        <div class="input-group full-width">
+                            <label>Rol</label>
+                            <input type="text" value="Encargado de Logística y Finanzas" disabled class="input-disabled">
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- 2. SEGURIDAD -->
+                <section class="settings-card">
+                    <div class="card-header">
+                        <div class="icon-box orange"><i class="fas fa-shield-alt"></i></div>
+                        <h3>Seguridad</h3>
+                    </div>
+
+                    <form id="securityForm" class="form-stack">
+                        <div class="input-group">
+                            <label>Contraseña Actual</label>
+                            <input type="password" placeholder="••••••••">
+                        </div>
+                        <div class="input-group">
+                            <label>Nueva Contraseña</label>
+                            <input type="password" placeholder="••••••••">
+                        </div>
+                        <div class="input-group">
+                            <label>Confirmar Nueva Contraseña</label>
+                            <input type="password" placeholder="••••••••">
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-primary">Cambiar Contraseña</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- 3. PREFERENCIAS -->
+                <section class="settings-card">
+                    <div class="card-header">
+                        <div class="icon-box orange"><i class="far fa-file-alt"></i></div>
+                        <h3>Preferencias de Reportes</h3>
+                    </div>
+
+                    <div class="toggles-list">
+                        <div class="toggle-item">
+                            <div class="toggle-info">
+                                <h4>Reportes Automáticos</h4>
+                                <p>Recibir reportes financieros semanalmente por correo</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-item">
+                            <div class="toggle-info">
+                                <h4>Alertas de Inventario</h4>
+                                <p>Notificar cuando el stock esté bajo</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-item">
+                            <div class="toggle-info">
+                                <h4>Resumen de Pedidos</h4>
+                                <p>Recibir resumen diario de pedidos pendientes</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                        <div class="toggle-item">
+                            <div class="toggle-info">
+                                <h4>Notificaciones Push</h4>
+                                <p>Activar notificaciones en el navegador</p>
+                            </div>
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions" style="margin-top: 20px;">
+                        <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </section>
+
+            </div>
+        </div>
+    </main>
+
+    <script src="js/settings.js"></script>
+</body>
+</html>
