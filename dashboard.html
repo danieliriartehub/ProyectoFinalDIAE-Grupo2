@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+  =============================================================================================
+  MÓDULO: DASHBOARD PRINCIPAL (HOME)
+  ARQUITECTURA: Single Page Application View (SPA-like)
+  OBJETIVO: Presentar KPIs críticos y estado del sistema en tiempo real.
+  =============================================================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILETL | Dashboard</title>
+    
+    <!-- Tipografía Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="./styles/dashboard.css">
+</head>
+
+<body>
+
+    <!-- HEADER: Navegación Superior -->
+    <header class="top-bar">
+        <div class="container header-wrapper">
+            <div class="brand-area">
+                <span class="logo-text">MILETL</span>
+            </div>
+            
+            <div class="user-actions">
+                <button class="icon-btn" aria-label="Notificaciones">
+                    <i class="far fa-bell"></i>
+                    <span class="badge-dot"></span>
+                </button>
+                
+                <!-- 
+                   AVATAR DEL USUARIO:
+                   Este botón es el punto de entrada para la 2da vista (Configuración).
+                   El JS le asignará las iniciales correctas dinámicamente.
+                -->
+                <button id="profileTrigger" class="avatar-circle" aria-label="Abrir perfil">
+                    <span id="userInitials">US</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="dashboard-content container">
+        
+        <!-- Sección de Bienvenida -->
+        <section class="welcome-header animate-fade">
+            <h1 class="greeting">Hola, <span id="dynamicUserName" class="text-highlight">Usuario</span></h1>
+            <div id="currentDate" class="date-display">
+                <i class="far fa-calendar-alt"></i> Cargando fecha...
+            </div>
+        </section>
+
+        <!-- KPI CARDS (Indicadores Clave de Rendimiento) -->
+        <section class="kpi-grid animate-fade delay-1">
+            
+            <!-- Card 1: Finanzas -->
+            <div class="kpi-card">
+                <div class="card-top">
+                    <div class="icon-box bg-orange"><i class="fas fa-dollar-sign"></i></div>
+                    <button class="menu-dots"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+                <span class="kpi-label">FLUJO DE CAJA</span>
+                <h3 class="kpi-number">S/ 142,058</h3>
+                <p class="kpi-context">Octubre 2025</p>
+                <div class="kpi-trend positive">
+                    <i class="fas fa-arrow-up"></i> +12.5% <span class="trend-text">vs. mes anterior</span>
+                </div>
+            </div>
+
+            <!-- Card 2: Inventario -->
+            <div class="kpi-card">
+                <div class="card-top">
+                    <div class="icon-box bg-green"><i class="fas fa-box"></i></div>
+                    <button class="menu-dots"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+                <span class="kpi-label">NIVEL DE INVENTARIO</span>
+                <h3 class="kpi-number">935</h3>
+                <p class="kpi-context">Unidades en stock</p>
+                <div class="kpi-status good">
+                    <i class="fas fa-check-circle"></i> Óptimo <span class="trend-text">85% capacidad</span>
+                </div>
+            </div>
+
+            <!-- Card 3: Logística -->
+            <div class="kpi-card">
+                <div class="card-top">
+                    <div class="icon-box bg-yellow"><i class="fas fa-truck-fast"></i></div>
+                    <button class="menu-dots"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+                <span class="kpi-label">PEDIDOS EN TRÁNSITO</span>
+                <h3 class="kpi-number">32</h3>
+                <p class="kpi-context">En ruta de entrega</p>
+                <div class="kpi-status warning">
+                    <i class="fas fa-exclamation-triangle"></i> 5 urgentes <span class="trend-text">Requieren atención</span>
+                </div>
+            </div>
+
+            <!-- Card 4: Sistema -->
+            <div class="kpi-card">
+                <div class="card-top">
+                    <div class="icon-box bg-blue"><i class="far fa-bell"></i></div>
+                    <button class="menu-dots"><i class="fas fa-ellipsis-v"></i></button>
+                </div>
+                <span class="kpi-label">ALERTAS ACTIVAS</span>
+                <h3 class="kpi-number">7</h3>
+                <p class="kpi-context">Requieren revisión</p>
+                <div class="kpi-status critical">
+                    <i class="fas fa-fire"></i> 3 críticas <span class="trend-text">Acción inmediata</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN DE ALERTAS (Listado) -->
+        <section class="alerts-section animate-fade delay-2">
+            <div class="section-title-row">
+                <h2>Alertas Recientes</h2>
+                <a href="#" class="link-view-all">Ver todas <i class="fas fa-chevron-right"></i></a>
+            </div>
+
+            <div class="alerts-list">
+                <!-- Alerta Critica -->
+                <div class="alert-item type-critical">
+                    <div class="alert-icon"><i class="fas fa-exclamation-circle"></i></div>
+                    <div class="alert-info">
+                        <h4>Pago pendiente vencido</h4>
+                        <p>Factura #4578 - Proveedor XYZ S.A.C. - S/ 15,420</p>
+                        <span class="time-ago"><i class="far fa-clock"></i> Hace 2 horas</span>
+                    </div>
+                </div>
+
+                <!-- Alerta Advertencia -->
+                <div class="alert-item type-warning">
+                    <div class="alert-icon"><i class="fas fa-exclamation-triangle"></i></div>
+                    <div class="alert-info">
+                        <h4>Stock bajo - Reabastecimiento</h4>
+                        <p>Producto SKU-2847 tiene solo 12 unidades restantes</p>
+                        <span class="time-ago"><i class="far fa-clock"></i> Hace 4 horas</span>
+                    </div>
+                </div>
+
+                <!-- Alerta Informativa -->
+                <div class="alert-item type-info">
+                    <div class="alert-icon"><i class="fas fa-info-circle"></i></div>
+                    <div class="alert-info">
+                        <h4>Pedido requiere confirmación</h4>
+                        <p>Pedido #5678 por S/ 8,900 - Esperando aprobación</p>
+                        <span class="time-ago"><i class="far fa-clock"></i> Ayer</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- BOTTOM NAV (Estilo App Móvil/SaaS) -->
+    <nav class="bottom-dock">
+        <a href="#" class="dock-item active">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="#" class="dock-item">
+            <i class="fas fa-box-open"></i>
+            <span>Inventario</span>
+        </a>
+        <a href="#" class="dock-item">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Pedidos</span>
+        </a>
+        <a href="#" class="dock-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Reportes</span>
+        </a>
+        <a href="#" class="dock-item">
+            <i class="fas fa-cog"></i>
+            <span>Ajustes</span>
+        </a>
+    </nav>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
