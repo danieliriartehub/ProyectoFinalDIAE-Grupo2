@@ -9,6 +9,7 @@ class AnalysisController {
     
     constructor() {
         this.dom = {
+            overlay: document.getElementById('dimOverlay'),
             cards: {
                 volume: document.getElementById('cardVolume'),
                 fixes: document.getElementById('cardFixes'),
@@ -35,6 +36,9 @@ class AnalysisController {
         window.showDetail = (cardId) => this.activateCard(cardId);
         window.closeDetail = () => this.deactivateAll();
         
+        // Listener para cerrar al hacer clic fuera (en el overlay)
+        this.dom.overlay.addEventListener('click', () => this.deactivateAll());
+
         // Listener para el botón Next
         this.dom.btnNext.addEventListener('click', () => {
             // Animación de salida antes de irse
@@ -49,18 +53,22 @@ class AnalysisController {
         // 1. Resetear otros
         this.deactivateAll();
 
-        // 2. Activar Tarjeta Específica
+        // 2. Activar Overlay
+        this.dom.overlay.classList.add('active');
+
+        // 3. Activar Tarjeta Específica
         const card = this.dom.cards[cardKey];
         if (card) {
             card.classList.add('active');
             
-            // 3. Marcar como visto
+            // 4. Marcar como visto
             this.state.viewed[cardKey] = true;
             this.checkCompletion();
         }
     }
 
     deactivateAll() {
+        this.dom.overlay.classList.remove('active');
         Object.values(this.dom.cards).forEach(card => {
             card.classList.remove('active');
         });

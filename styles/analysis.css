@@ -58,7 +58,6 @@ body { font-family: 'Inter', sans-serif; background-color: #333; /* Fondo base o
 .cards-container { 
     display: flex; flex-direction: column; gap: 20px; 
     max-width: 500px; /* Alineación izquierda como en mockup */
-    position: relative; z-index: 10;
 }
 
 .insight-card {
