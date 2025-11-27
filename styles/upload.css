@@ -1,0 +1,125 @@
+
+/* =========================================================================================
+  ARCHIVO: upload.css
+  DISEÑO: Wizard de Carga Limpio y Moderno
+  PALETA: MILETL Standard (Naranja #F49D37, Crema #FFFBF2)
+  =========================================================================================
+*/
+
+:root {
+    --primary: #F49D37;
+    --primary-hover: #E08B2B;
+    --text-dark: #1F2937;
+    --text-gray: #6B7280;
+    --bg-body: #FFFBF2;
+    --bg-card: #FFFFFF;
+    --border-dashed: #D1D5DB;
+    --drag-over: #FFF7ED; /* Fondo al arrastrar */
+    --error-bg: #FEF2F2;
+    --error-text: #DC2626;
+    --success-bg: #ECFDF5;
+    --success-text: #059669;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-dark); height: 100vh; display: flex; flex-direction: column; }
+
+.container { max-width: 1000px; margin: 0 auto; padding: 0 20px; width: 100%; }
+
+/* --- WIZARD NAV --- */
+.wizard-nav { background: #1F2937; height: 70px; display: flex; align-items: center; color: white; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+.nav-content { display: flex; justify-content: space-between; align-items: center; }
+
+.brand { display: flex; align-items: center; gap: 10px; }
+.logo-box { background: var(--primary); width: 32px; height: 32px; border-radius: 6px; display: grid; place-items: center; font-weight: 800; color: white; }
+.logo-text { font-weight: 700; font-size: 1.1rem; letter-spacing: 0.5px; }
+
+.step-indicator { display: flex; align-items: center; gap: 12px; font-size: 0.9rem; }
+.step { color: #9CA3AF; font-weight: 500; }
+.step.active { color: var(--primary); font-weight: 700; }
+.line { width: 40px; height: 1px; background: #4B5563; }
+
+.btn-close { background: transparent; border: 1px solid #4B5563; color: #D1D5DB; padding: 8px 16px; border-radius: 6px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
+.btn-close:hover { border-color: white; color: white; }
+
+/* --- MAIN CARD --- */
+.upload-main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+
+.upload-card { background: var(--bg-card); width: 100%; border-radius: 16px; padding: 40px; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); border: 1px solid rgba(0,0,0,0.05); }
+
+.card-header { margin-bottom: 30px; text-align: left; }
+.card-header h2 { font-size: 1.5rem; font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; }
+.badge-beta { background: #ECFDF5; color: #059669; font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.card-header p { color: var(--text-gray); font-size: 0.95rem; max-width: 700px; }
+
+/* --- DROP ZONE --- */
+.drop-zone { 
+    border: 2px dashed var(--border-dashed); border-radius: 12px; 
+    padding: 60px 20px; text-align: center; position: relative; 
+    transition: all 0.3s ease; cursor: pointer; background: #F9FAFB;
+}
+.drop-zone:hover { border-color: var(--primary); background: #FFFBF2; }
+.drop-zone.drag-active { border-color: var(--primary); background: var(--drag-over); transform: scale(1.01); box-shadow: 0 0 0 4px rgba(244, 157, 55, 0.1); }
+
+.icon-cloud { font-size: 3rem; color: #D1D5DB; margin-bottom: 20px; transition: color 0.3s; }
+.drop-zone:hover .icon-cloud { color: var(--primary); }
+
+.drop-content h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+.drop-content p { color: var(--text-gray); font-size: 0.9rem; margin-bottom: 20px; }
+.file-hint { font-size: 0.8rem; color: #9CA3AF; margin-top: 10px; }
+
+.btn-select { background: white; border: 1px solid #D1D5DB; padding: 10px 24px; border-radius: 8px; font-weight: 600; color: var(--text-dark); cursor: pointer; transition: all 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
+.btn-select:hover { border-color: var(--primary); color: var(--primary); }
+
+/* --- FILE LIST --- */
+.file-list-container { margin-top: 30px; animation: slideDown 0.4s ease-out; }
+.file-list-container h4 { font-size: 0.9rem; font-weight: 700; color: var(--text-gray); text-transform: uppercase; margin-bottom: 12px; letter-spacing: 0.5px; }
+
+.file-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.file-item { 
+    background: white; border: 1px solid #E5E7EB; border-radius: 8px; padding: 12px 16px; 
+    display: flex; justify-content: space-between; align-items: center; 
+    transition: transform 0.2s; box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+.file-item:hover { transform: translateX(4px); border-color: #D1D5DB; }
+
+.file-info { display: flex; align-items: center; gap: 12px; }
+.file-icon { color: #10B981; font-size: 1.5rem; } /* Excel green */
+.file-name { font-weight: 600; font-size: 0.95rem; color: var(--text-dark); }
+.file-size { font-size: 0.8rem; color: var(--text-gray); }
+
+.btn-delete { background: none; border: none; color: #EF4444; cursor: pointer; padding: 6px; border-radius: 4px; transition: background 0.2s; }
+.btn-delete:hover { background: #FEF2F2; }
+
+/* --- ERROR BANNER --- */
+.error-banner { 
+    background: var(--error-bg); border: 1px solid #FECACA; border-radius: 8px; 
+    padding: 16px; margin-top: 20px; display: flex; align-items: flex-start; gap: 12px; 
+    animation: shake 0.4s ease-in-out; 
+}
+.error-icon { color: var(--error-text); font-size: 1.2rem; margin-top: 2px; }
+.error-text strong { display: block; color: #991B1B; font-size: 0.95rem; margin-bottom: 2px; }
+.error-text p { font-size: 0.85rem; color: #7F1D1D; }
+.close-error { background: none; border: none; color: #991B1B; cursor: pointer; margin-left: auto; }
+
+/* --- FOOTER ACTIONS --- */
+.card-footer { margin-top: 40px; border-top: 1px solid #E5E7EB; padding-top: 20px; display: flex; justify-content: flex-end; gap: 12px; }
+
+.btn-secondary { background: white; border: 1px solid #D1D5DB; color: var(--text-dark); padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; }
+.btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-primary { 
+    background: var(--primary); color: white; border: none; padding: 12px 28px; 
+    border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.2s; 
+    display: flex; align-items: center; gap: 8px; 
+}
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-primary:disabled { background: #D1D5DB; cursor: not-allowed; }
+
+/* UTILS */
+.hidden { display: none !important; }
+.animate-fade-up { animation: fadeUp 0.6s ease-out; }
+
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes slideDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }

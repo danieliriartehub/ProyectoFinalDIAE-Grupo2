@@ -20,13 +20,10 @@ class AuthController {
         // Referencias al DOM
         this.dom = {
             loginForm: document.getElementById('loginForm'),
-            registerForm: document.getElementById('registerForm'),
             emailInput: document.getElementById('email'),
             passwordInput: document.getElementById('password'),
             toggleBtn: document.getElementById('togglePasswordBtn'),
             errorMsg: document.getElementById('loginError'),
-            showRegisterBtn: document.getElementById('showRegisterBtn'),
-            showLoginBtn: document.getElementById('showLoginBtn'),
             submitBtn: document.querySelector('#loginForm button[type="submit"]')
         };
 
@@ -44,18 +41,7 @@ class AuthController {
             this.dom.toggleBtn.addEventListener('click', () => this.togglePasswordVisibility());
         }
 
-        // 3. Navegación (Switch Login/Register)
-        this.dom.showRegisterBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.switchView('register');
-        });
-        
-        this.dom.showLoginBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            this.switchView('login');
-        });
-
-        // 4. Limpiar errores al escribir
+        // 3. Limpiar errores al escribir
         this.dom.emailInput.addEventListener('input', () => this.hideError());
         this.dom.passwordInput.addEventListener('input', () => this.hideError());
     }
