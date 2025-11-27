@@ -154,8 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // Simular tiempo de proceso ETL
         setTimeout(() => {
-            alert('¡Archivos procesados correctamente! Redirigiendo al Dashboard...');
-            window.location.href = 'dashboard.html';
+            alert('¡Archivos procesados correctamente! Redirigiendo a la fase de análisis...');
+            window.location.href = 'analysis.html';
         }, 2000);
     });
 

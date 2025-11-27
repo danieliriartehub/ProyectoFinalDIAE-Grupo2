@@ -1,0 +1,194 @@
+/* =========================================================================================
+  ARCHIVO: insights.css (VERSIÓN CENTRADA)
+  DISEÑO: Dashboard High-Fidelity con Gráficos Ajustados
+  =========================================================================================
+*/
+
+:root {
+    --primary: #F49D37;
+    --text-dark: #1F2937;
+    --text-light: #6B7280;
+    --bg-app: #374151;
+    --bg-panel: #F3F4F6;
+    --card-bg: #FFFFFF;
+    
+    /* Paleta de Gráficos */
+    --chart-purple: #C026D3;
+    --chart-pink: #F472B6;
+    --chart-green: #22C55E;
+    --chart-blue: #3B82F6;
+    --bar-primary: #10B981;
+    --bar-secondary: #6B7280;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { 
+    font-family: 'Inter', sans-serif; 
+    background-color: var(--bg-app); 
+    height: 100vh; 
+    overflow: hidden; 
+    display: flex; flex-direction: column;
+}
+
+/* HEADER */
+.top-bar {
+    background: #1F2937; height: 50px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; color: white;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.logo-box { background: var(--primary); width: 28px; height: 28px; border-radius: 4px; display: grid; place-items: center; font-weight: 800; font-size: 0.9rem; }
+.brand-text .name { font-weight: 700; font-size: 1rem; }
+.brand-text .tag { color: #9CA3AF; font-size: 0.7rem; margin-left: 8px; text-transform: uppercase; }
+
+.status-pill { background: #374151; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; display: flex; align-items: center; gap: 6px; border: 1px solid #4B5563; }
+.dot { width: 6px; height: 6px; background: #10B981; border-radius: 50%; box-shadow: 0 0 4px #10B981; }
+
+.controls-bar { background: #F3F4F6; padding: 10px 20px; }
+.btn-back { background: var(--primary); border: none; color: white; padding: 6px 16px; border-radius: 6px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+.btn-back:hover { background: #D97706; }
+
+/* GRID LAYOUT */
+.dashboard-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 45% 1fr 60px;
+    gap: 20px;
+    padding: 20px;
+    background: var(--bg-panel);
+    position: relative;
+}
+
+/* COLUMNA IZQUIERDA */
+.grid-col-left { display: flex; flex-direction: column; gap: 20px; height: 100%; }
+
+.large-card {
+    background: var(--card-bg); border-radius: 12px; padding: 20px 24px;
+    flex: 1; /* Ocupa todo el alto disponible */
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+    border: 1px solid #E5E7EB; cursor: pointer; position: relative;
+    transition: all 0.3s ease;
+}
+.large-card:hover { border-color: var(--primary); }
+
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.card-header h4 { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); }
+.badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 4px; font-weight: 600; }
+.badge.orange { background: #FFF7ED; color: var(--primary); border: 1px solid #FFEDD5; }
+.btn-more { background: #E5E7EB; color: #6B7280; border: none; width: 24px; height: 24px; border-radius: 4px; display: grid; place-items: center; font-size: 0.7rem; }
+.btn-more.green { background: #DCFCE7; color: #166534; }
+
+.mascot-area { height: 160px; position: relative; z-index: 5; }
+.fox-mascot { height: 100%; position: absolute; bottom: 0; left: 20px; filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2)); }
+
+/* COLUMNA DERECHA */
+.grid-col-right { display: flex; flex-direction: column; gap: 20px; height: 100%; }
+.right-top-row { display: flex; gap: 20px; height: 200px; } /* Altura fija para fila superior */
+
+.chart-card {
+    background: var(--card-bg); border-radius: 12px; padding: 20px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid #E5E7EB;
+    cursor: pointer; position: relative; flex: 1;
+    transition: all 0.3s ease;
+    display: flex; flex-direction: column;
+}
+.chart-card:hover { border-color: var(--primary); transform: translateY(-2px); }
+.wide-card { flex: 1; }
+
+/* GRÁFICOS (AJUSTE DE CENTRADO) */
+.chart-body { 
+    flex: 1; width: 100%; position: relative; 
+    display: flex; flex-direction: column; justify-content: flex-end; /* Alinear al fondo */
+}
+.centered { justify-content: center; align-items: center; flex-direction: row; gap: 20px; }
+
+.x-axis-line { width: 100%; height: 1px; background: #E5E7EB; margin-top: 0px; }
+
+/* 1. Barras Complejas (Izquierda) - CENTRADO */
+.complex-bar-chart { 
+    display: flex; 
+    justify-content: center; /* CLAVE: Centra el grupo de barras */
+    gap: 25px; /* Espacio uniforme entre pares */
+    align-items: flex-end; 
+    height: 100%; 
+    padding-bottom: 5px;
+    width: 100%;
+}
+.bar-group { display: flex; gap: 4px; align-items: flex-end; height: 100%; }
+.c-bar { width: 10px; background: var(--bar-secondary); border-radius: 2px 2px 0 0; transition: height 0.5s; }
+.c-bar.alt { background: var(--chart-bar-1); } /* Verde claro */
+
+/* Alturas */
+.h-30 { height: 30%; } .h-40 { height: 40%; } .h-50 { height: 50%; } .h-60 { height: 60%; } 
+.h-70 { height: 70%; } .h-80 { height: 80%; } .h-90 { height: 90%; }
+
+/* 2. Pie Chart */
+.pie-chart {
+    width: 90px; height: 90px; border-radius: 50%;
+    background: conic-gradient(var(--chart-purple) 0% 70%, var(--chart-pink) 70% 100%);
+    position: relative;
+}
+/* Líneas blancas para separar segmentos */
+.pie-chart::after {
+    content: ''; position: absolute; inset: 0; border-radius: 50%;
+    background: conic-gradient(transparent 0% 69%, white 69% 71%, transparent 71% 99%, white 99% 100%);
+}
+.pie-legend { display: flex; flex-direction: column; gap: 5px; font-size: 0.7rem; color: var(--text-light); }
+.dot-l { width: 8px; height: 8px; display: inline-block; border-radius: 50%; margin-right: 5px; }
+.p1 { background: var(--chart-purple); } .p2 { background: var(--chart-pink); }
+
+/* 3. Vertical Bars (Top Productos) - CENTRADO */
+.vertical-bars { 
+    display: flex; 
+    justify-content: center; /* CLAVE: Centrado */
+    gap: 15px; /* Espaciado uniforme */
+    align-items: flex-end; 
+    height: 100%; 
+    padding-bottom: 5px;
+    width: 100%;
+}
+.v-bar { width: 14px; background: #4ADE80; border-radius: 3px 3px 0 0; opacity: 0.7; }
+.v-bar.active-bar { background: #22C55E; opacity: 1; height: 90%; } /* Barra destacada */
+
+/* 4. Area Chart */
+.area-chart { width: 100%; height: 100%; display: block; }
+
+/* FOCUS & BUBBLES */
+.focus-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); z-index: 40; opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.focus-overlay.active { opacity: 1; pointer-events: auto; }
+
+.chart-card.active { 
+    z-index: 50; 
+    box-shadow: 0 0 0 4px var(--primary), 0 20px 25px -5px rgba(0, 0, 0, 0.1); 
+    transform: scale(1.02); background: white; cursor: default; 
+}
+
+.insight-bubble {
+    position: absolute; width: 300px; background: #FEF3C7; border: 1px solid #FCD34D;
+    padding: 16px; border-radius: 8px; box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    opacity: 0; visibility: hidden; transition: all 0.3s; pointer-events: none; text-align: left; z-index: 60;
+}
+.chart-card.active .insight-bubble { opacity: 1; visibility: visible; pointer-events: auto; }
+
+/* Posiciones Bubble */
+.right-side { top: 10%; left: 102%; }
+.left-side { top: 10%; right: 102%; }
+.bottom-side { top: 105%; left: 0; width: 100%; }
+.top-side { bottom: 105%; left: 10%; }
+
+.bubble-header { font-weight: 700; color: #B45309; font-size: 0.85rem; margin-bottom: 8px; display: flex; align-items: center; gap: 6px; }
+.insight-bubble p { font-size: 0.8rem; color: #4B5563; margin-bottom: 12px; line-height: 1.4; }
+.btn-ok { background: #B45309; color: white; border: none; padding: 5px 14px; border-radius: 4px; font-size: 0.75rem; cursor: pointer; float: right; font-weight: 600; }
+
+/* NAV ARROW */
+.nav-arrow-container { display: flex; align-items: center; justify-content: center; }
+.arrow-btn { background: transparent; border: none; color: #9CA3AF; font-size: 3rem; cursor: not-allowed; transition: all 0.3s; }
+.arrow-btn.active { color: var(--primary); cursor: pointer; animation: bounceRight 1.5s infinite; }
+
+/* PROGRESS BAR */
+.bottom-progress { background: var(--primary); height: 30px; width: 100%; position: absolute; bottom: 0; left: 0; }
+.bar-track { width: 100%; height: 100%; background: #E5E7EB; position: relative; }
+.bar-fill { height: 100%; width: 66%; background: linear-gradient(90deg, #F59E0B, #10B981); transition: width 0.5s; }
+
+@keyframes bounceRight { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(5px); } }

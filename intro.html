@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+  =============================================================================================
+  VISTA: INTRODUCCIÓN FINAL (TEASER)
+  ARQUITECTURA: Layered View (Dashboard Background -> Interaction Overlay)
+  OBJETIVO: Mostrar el valor primero, luego pedir el login.
+  =============================================================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILETL | Bienvenido</title>
+    
+    <!-- Fuentes e Iconos -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Específico -->
+    <link rel="stylesheet" href="./styles/intro.css">
+</head>
+
+<body id="introBody">
+
+    <!-- CAPA 1: DASHBOARD SIMULADO (FONDO CLARO INICIAL) -->
+    <div class="fake-dashboard">
+        <header class="fake-nav">
+            <div class="container nav-content">
+                <span class="fake-logo">MILETL</span>
+                <div class="fake-actions">
+                    <i class="far fa-bell"></i>
+                    <div class="fake-avatar">CA</div>
+                </div>
+            </div>
+        </header>
+
+        <main class="container fake-main">
+            <div class="fake-welcome">
+                <h1>Hola, Carlos</h1>
+                <p>Viernes, 17 de octubre de 2025</p>
+            </div>
+
+            <!-- Grid de KPIs Falsos -->
+            <div class="fake-grid">
+                <div class="fake-card">
+                    <div class="fake-icon orange-bg"><i class="fas fa-dollar-sign"></i></div>
+                    <p class="fake-label">FLUJO DE CAJA</p>
+                    <h3>S/ 142,058</h3>
+                    <div class="fake-pill green"></div>
+                </div>
+                <div class="fake-card">
+                    <div class="fake-icon green-bg"><i class="fas fa-cube"></i></div>
+                    <p class="fake-label">NIVEL DE INVENTARIO</p>
+                    <h3>935</h3>
+                    <div class="fake-pill green-text"></div>
+                </div>
+                <div class="fake-card">
+                    <div class="fake-icon yellow-bg"><i class="fas fa-truck"></i></div>
+                    <p class="fake-label">PEDIDOS EN TRÁNSITO</p>
+                    <h3>32</h3>
+                    <div class="fake-pill yellow"></div>
+                </div>
+                <div class="fake-card">
+                    <div class="fake-icon blue-bg"><i class="far fa-bell"></i></div>
+                    <p class="fake-label">ALERTAS ACTIVAS</p>
+                    <h3>7</h3>
+                    <div class="fake-pill red"></div>
+                </div>
+            </div>
+
+            <div class="fake-dock-line">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </main>
+    </div>
+
+    <!-- CAPA 2: OSCURECIMIENTO (DIMMER) - Inicialmente invisible -->
+    <div id="dimmer" class="overlay-dimmer"></div>
+
+    <!-- CAPA 3: INTERACCIÓN (Zorro y Botón) -->
+    <div class="interaction-layer" id="interactionLayer">
+        
+        <!-- Grupo Zorro + Globo -->
+        <div class="mascot-group animate-slide-in">
+            <!-- Globo de Texto -->
+            <div class="speech-bubble" id="speechBubble">
+                <h4 id="bubbleTitle">Sabemos que gestionar un negocio puede ser un caos.</h4>
+                <p id="bubbleText">Por eso creamos este espacio para ti. Arriba tienes la claridad: una vista panorámica de tus cifras más importantes.</p>
+            </div>
+
+            <!-- Zorro -->
+            <img src="https://cdn-icons-png.flaticon.com/512/4193/4193235.png" alt="Asistente" class="mascot-img">
+        </div>
+
+        <!-- Botón Central (Oculto inicialmente) -->
+        <div class="login-container hidden" id="loginContainer">
+            <button id="btnLogin" class="btn-login-main">
+                Iniciar Sesión
+            </button>
+        </div>
+
+    </div>
+
+    <!-- CAPA 4: BARRA DE PROGRESO (Footer Naranja) -->
+    <footer class="intro-footer">
+        <div class="progress-track">
+            <!-- Barra Verde que avanza -->
+            <div class="progress-bar" id="introProgressBar"></div>
+        </div>
+    </footer>
+
+    <script src="js/intro.js"></script>
+</body>
+</html>
