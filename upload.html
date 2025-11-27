@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+  =============================================================================================
+  VISTA: CARGA DE ARCHIVOS (DEMO WIZARD)
+  OBJETIVO: Onboarding de usuario mediante carga de datos (Excel).
+  ARQUITECTURA: Drag & Drop Interface con Validación de Tipos.
+  =============================================================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILETL | Cargar Datos</title>
+    
+    <!-- Tipografía Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="./styles/upload.css">
+</head>
+
+<body>
+
+    <!-- NAV SIMPLIFICADO (Wizard Style) -->
+    <nav class="wizard-nav">
+        <div class="container nav-content">
+            <div class="brand">
+                <div class="logo-box">M</div>
+                <span class="logo-text">MILETL</span>
+            </div>
+            <div class="step-indicator">
+                <span class="step active">1. Carga</span>
+                <span class="line"></span>
+                <span class="step">2. Análisis</span>
+                <span class="line"></span>
+                <span class="step">3. Resultados</span>
+            </div>
+            <button class="btn-close" onclick="window.location.href='index.html'">
+                <i class="fas fa-times"></i> Cancelar y Volver
+            </button>
+        </div>
+    </nav>
+
+    <main class="container upload-main">
+        
+        <div class="upload-card animate-fade-up">
+            
+            <header class="card-header">
+                <h2>Subir Información de la Empresa <span class="badge-beta">AI Engine Activo</span></h2>
+                <p>Carga tus archivos de datos históricos. El sistema identificará automáticamente la estructura y generará insights preliminares.</p>
+            </header>
+
+            <!-- ZONA DE CARGA (DROP ZONE) -->
+            <div id="dropZone" class="drop-zone">
+                <div class="drop-content">
+                    <div class="icon-cloud">
+                        <i class="fas fa-cloud-upload-alt"></i>
+                    </div>
+                    <h3>Arrastra tus archivos aquí</h3>
+                    <p>o haz clic para seleccionar desde tu ordenador</p>
+                    <button class="btn-select" id="btnSelectFile">Explorar Archivos</button>
+                    <input type="file" id="fileInput" hidden accept=".xlsx, .xls">
+                    <p class="file-hint">Solo archivos Excel (.xlsx)</p>
+                </div>
+                
+                <!-- Overlay de carga (Oculto por defecto) -->
+                <div class="loading-overlay hidden" id="loadingOverlay">
+                    <div class="spinner"></div>
+                    <p>Analizando estructura...</p>
+                </div>
+            </div>
+
+            <!-- LISTA DE ARCHIVOS CARGADOS -->
+            <div id="fileListContainer" class="file-list-container hidden">
+                <h4>Archivos Listos para Procesar</h4>
+                <ul id="fileList" class="file-list">
+                    <!-- Los items se inyectan aquí con JS -->
+                </ul>
+            </div>
+
+            <!-- ALERTAS DE ERROR -->
+            <div id="errorBanner" class="error-banner hidden">
+                <div class="error-icon"><i class="fas fa-exclamation-circle"></i></div>
+                <div class="error-text">
+                    <strong>Formato no compatible</strong>
+                    <p>El sistema solo acepta archivos de hoja de cálculo (.xlsx). Los archivos de texto o Word no pueden ser procesados por el motor ETL.</p>
+                </div>
+                <button class="close-error" id="closeErrorBtn"><i class="fas fa-times"></i></button>
+            </div>
+
+            <!-- ACCIONES FINALES -->
+            <div class="card-footer">
+                <button class="btn-secondary" id="btnClearAll" disabled>Limpiar Todo</button>
+                <button class="btn-primary" id="btnProcess" disabled>
+                    Procesar Datos <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="js/upload.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+  =============================================================================================
+  VISTA: PEDIDOS Y DESPACHOS (LOGISTICS HUB)
+  ARQUITECTURA: List & Detail View
+  OBJETIVO: Rastreo de envíos, gestión de transportistas y resolución de incidencias.
+  =============================================================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILETL | Pedidos y Despachos</title>
+    
+    <!-- Tipografía Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Modular -->
+    <link rel="stylesheet" href="./styles/orders.css">
+</head>
+
+<body>
+
+    <!-- TOP NAVIGATION -->
+    <nav class="module-nav">
+        <div class="container nav-wrapper">
+            <div class="nav-left">
+                <a href="dashboard.html" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </a>
+                <span class="brand-logo">MILETL</span>
+            </div>
+            <div class="actions">
+                <div class="avatar-circle">CA</div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container module-main">
+        
+        <!-- HEADER -->
+        <header class="page-header">
+            <h1>Pedidos y Despachos</h1>
+            <p>Rastrea y gestiona el flujo de entregas de tus ventas.</p>
+        </header>
+
+        <!-- ALERTA DE INCIDENCIAS -->
+        <div class="alert-banner-critical animate-fade">
+            <div class="icon-wrapper">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="text-content">
+                <h3>5 Pedidos Urgentes Requieren Atención</h3>
+                <p>Estos pedidos presentan retrasos o incidencias que necesitan revisión inmediata.</p>
+            </div>
+        </div>
+
+        <!-- FILTROS DE ESTADO (TABS) -->
+        <section class="status-filters">
+            <button class="filter-card" data-filter="pending">
+                <span class="label">Pendientes</span>
+                <span class="count">8</span>
+            </button>
+            <button class="filter-card active" data-filter="transit">
+                <span class="label">En Tránsito</span>
+                <span class="count highlight">32</span>
+            </button>
+            <button class="filter-card" data-filter="delivered">
+                <span class="label">Entregados</span>
+                <span class="count">145</span>
+            </button>
+            <button class="filter-card" data-filter="delayed">
+                <span class="label">Retrasados</span>
+                <span class="count error">3</span>
+            </button>
+        </section>
+
+        <!-- SECCIÓN: PEDIDOS URGENTES -->
+        <section class="orders-section urgency-section">
+            <div class="section-badge red">
+                <i class="fas fa-fire"></i> Pedidos Urgentes (5)
+            </div>
+
+            <div class="table-container red-border">
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>CLIENTE</th>
+                            <th>N° DE PEDIDO</th>
+                            <th>FECHA DE ENVÍO</th>
+                            <th>TRANSPORTISTA</th>
+                            <th>N° DE SEGUIMIENTO</th>
+                            <th>ESTADO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="urgentOrdersBody">
+                        <!-- Renderizado por JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- SECCIÓN: PEDIDOS REGULARES -->
+        <section class="orders-section regular-section">
+            <div class="section-title">
+                <h3>Pedidos Regulares (27)</h3>
+            </div>
+
+            <div class="table-container">
+                <table class="orders-table">
+                    <thead>
+                        <tr>
+                            <th>CLIENTE</th>
+                            <th>N° DE PEDIDO</th>
+                            <th>FECHA DE ENVÍO</th>
+                            <th>TRANSPORTISTA</th>
+                            <th>N° DE SEGUIMIENTO</th>
+                            <th>ESTADO</th>
+                            <th>ACCIONES</th>
+                        </tr>
+                    </thead>
+                    <tbody id="regularOrdersBody">
+                        <!-- Renderizado por JS -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="load-more">
+                ... y 24 pedidos más en tránsito
+            </div>
+        </section>
+
+    </main>
+
+    <!-- BOTTOM DOCK -->
+    <nav class="bottom-dock">
+        <a href="dashboard.html" class="dock-item">
+            <i class="fas fa-home"></i>
+            <span>Inicio</span>
+        </a>
+        <a href="inventory.html" class="dock-item">
+            <i class="fas fa-box-open"></i>
+            <span>Inventario</span>
+        </a>
+        <a href="orders.html" class="dock-item active">
+            <i class="fas fa-truck-fast"></i>
+            <span>Pedidos</span>
+        </a>
+        <a href="finance.html" class="dock-item">
+            <i class="fas fa-file-invoice-dollar"></i>
+            <span>Finanzas</span>
+        </a>
+        <a href="cashflow.html" class="dock-item">
+            <i class="fas fa-chart-pie"></i>
+            <span>Reportes</span>
+        </a>
+        <a href="settings.html" class="dock-item">
+            <i class="fas fa-cog"></i>
+            <span>Ajustes</span>
+        </a>
+    </nav>
+
+    <script src="js/orders.js"></script>
+</body>
+</html>

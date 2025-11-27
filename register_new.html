@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<!-- 
+  =============================================================================================
+  VISTA: NUEVO REGISTRO DE USUARIO
+  DISEÑO: Fiel al mockup (image_88ba3c.png)
+  ARQUITECTURA: Auth Page Independiente
+  =============================================================================================
+-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MILETL | Crear Cuenta</title>
+    
+    <!-- Tipografía Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS Específico para Registro -->
+    <link rel="stylesheet" href="./styles/register_style.css">
+</head>
+
+<body class="register-body">
+
+    <main class="register-container animate-fade-in">
+        <div class="register-card">
+            
+            <!-- Header -->
+            <div class="card-header">
+                <div class="logo-wrapper">
+                    <div class="logo-box">M</div>
+                    <span class="logo-text">MILETL</span>
+                </div>
+                <h1>Crear Cuenta</h1>
+                <p>Empieza a gestionar tus datos de forma inteligente.</p>
+            </div>
+
+            <!-- Formulario -->
+            <form id="newRegisterForm" class="register-form">
+                
+                <!-- Nombre -->
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user input-icon"></i>
+                        <input type="text" id="regName" placeholder="Ej. Edwin Flores" required>
+                    </div>
+                </div>
+
+                <!-- Correo -->
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-envelope input-icon"></i>
+                        <input type="email" id="regEmail" placeholder="nombre@empresa.com" required>
+                    </div>
+                </div>
+
+                <!-- Contraseña -->
+                <div class="form-group">
+                    <label>Contraseña</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-lock input-icon"></i>
+                        <input type="password" id="regPassword" placeholder="••••••••" required minlength="6">
+                        <button type="button" class="eye-btn" id="togglePassBtn">
+                            <i class="far fa-eye"></i>
+                        </button>
+                    </div>
+                    <span class="hint-text">Mínimo 6 caracteres.</span>
+                </div>
+
+                <!-- Botón -->
+                <button type="submit" class="btn-submit">
+                    Registrarse <i class="fas fa-arrow-right"></i>
+                </button>
+
+            </form>
+
+            <!-- Footer -->
+            <div class="card-footer">
+                ¿Ya tienes una cuenta? <a href="login.html">Inicia Sesión</a>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="js/register_logic.js"></script>
+</body>
+</html>
